@@ -9,15 +9,14 @@ colcon build --symlink-install --packages-select pywebrtc
 source install/setup.bash
 ros2 run pywebrtc websrvr
 
-
 *then realsense in another terminal*
 source install/setup.bash
-ros2 run realsense_node rs_launch
+ros2 launch realsense2_camera rs_launch.py
 
-?? realsense_example.launch.py
-*test*
+*test if realsense seems off...*
 realsense-viewer
 
+*that, and use a third window to look at published topics - make sure all are there*
 '''
 
 
