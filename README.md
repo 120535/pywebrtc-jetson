@@ -33,7 +33,7 @@ Build (in the docker)
 cd /workspaces/isaac_ros-dev
 colcon build --symlink-install --packages-select pywebrtc
 ```
-4. Run/test
+4. Run/test with realsense camera
 ```
 source install/setup.bash
 ros2 run pywebrtc websrvr
@@ -53,6 +53,25 @@ ros2 launch realsense2_camera rs_launch.py
 ```
 
 ** voila - WebRTC showing your realsense image **
+
+5. Run/test with NVidia Isaac sim.   [Web page](https://nvidia-isaac-ros.github.io/concepts/scene_reconstruction/nvblox/tutorials/tutorial_isaac_sim.html)
+
+
+
+Start Isaac sim [per directions](https://nvidia-isaac-ros.github.io/concepts/scene_reconstruction/nvblox/tutorials/tutorial_isaac_sim.html) .    BTW, I need to go to http://localhost:3080/ to restart all services (e.g., Nucleus).
+
+```
+./python.sh ${ISAAC_ROS_WS}/src/isaac_ros_nvblox/nvblox_examples/nvblox_isaac_sim/omniverse_scripts/start_isaac_sim.py --gpu_physics_enabled
+```
+
+This Isaac sim publishes the image on 
+```/front/stereo_camera/left/rgb```
+so you may need to change the pywebrtc.py code to subscribe to that (okay, this can be fixed so it's easier...)
+
+to move the robot, a simple node is 'teleop_twist_keyboard'.
+```
+ros2 run teleop_twist_keyboard teleop_twist_keyboard
+```
 
 
 ## Other nice links

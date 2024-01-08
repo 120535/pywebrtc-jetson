@@ -188,6 +188,9 @@ imageTopic = 'rtcimage'     # pre-processed image
 # for use with basic realsense
 imageTopic = "/camera/color/image_raw"
 
+# for use with Isaac sym demo
+imageTopic = "/front/stereo_camera/left/rgb"
+
 # WebRTC node publish/subscribe
 class WebRTCPubSub(Node):
 
