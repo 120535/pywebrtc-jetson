@@ -10,6 +10,13 @@ source install/setup.bash
 ros2 run pywebrtc websrvr
 
 
+*then realsense in another terminal*
+source install/setup.bash
+ros2 run realsense_node rs_launch
+
+?? realsense_example.launch.py
+*test*
+realsense-viewer
 
 '''
 
@@ -176,7 +183,11 @@ async def on_shutdown(app):
 ####################################
 
 jsonTopic = 'webrtcpub'
-imageTopic = 'rtcimage'
+
+imageTopic = 'rtcimage'     # pre-processed image
+
+# for use with basic realsense
+imageTopic = "/camera/color/image_raw"
 
 # WebRTC node publish/subscribe
 class WebRTCPubSub(Node):
@@ -208,7 +219,7 @@ class WebRTCPubSub(Node):
         # and push to the WebRTC object - if it exists - defined as a global above
         if ros2vst is not None:
             ros2vst.setImg(cv_image)
-        self.get_logger().info('Rcvd new image')
+        # self.get_logger().info('Rcvd new image')
 
     def json_pub(self,payload):        
         msg = String()

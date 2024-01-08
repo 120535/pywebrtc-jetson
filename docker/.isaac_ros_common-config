@@ -1,0 +1,2 @@
+CONFIG_IMAGE_KEY=ros2_humble.realsense.mine
+CONFIG_DOCKER_SEARCH_DIRS=(/home/pg/workspaces/isaac_ros-dev/docker)
